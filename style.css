@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+/* reset */
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    /*estabelece o tamanho total da caixa considerando o conteúdo, o padding e a borda. Isso possibilita que alterações em algum desses elementos não altere o tamanho total da caixa*/
+    vertical-align: baseline;
+    /*o baseline é especialmente importante quando você tem elementos de diferentes tamanhos na mesma linha e quer que eles se alinhem de forma natural com o texto, mantendo a legibilidade*/
+    list-style: none;
+}
+
+/* mobile first */
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* seções inicialmente sem aparecer em tela */
+.createSection,
+.listSection,
+.deleteSection{
+    display: none;
+}
+
+.header{
+    text-align: center;
+}
+
+.landingSection {
+    display: flex;
+    flex-direction: column;
+    height: 33%;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;  
+    border: 1px solid black;
+    border-radius: 1rem;  
+}
+
+.btn{
+    width: 50%;
+}
+
+.createSection {
+    
+    flex-direction: column;
+    height: 33%;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;  
+    border: 1px solid black;
+    border-radius: 1rem;  
+}
+
+#buttons{
+    display: flex;
+    gap: 2rem;
+}
+
+.deleteSection {
+    
+    flex-direction: column;
+    height: 33%;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;  
+    border: 1px solid black;
+    border-radius: 1rem;  
+}
+
+
+.listSection {
+    
+    flex-direction: column;
+    height: 33%;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;  
+    border: 1px solid black;
+    border-radius: 1rem;  
+}

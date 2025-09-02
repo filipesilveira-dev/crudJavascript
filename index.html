@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <!-- seção inicial mostrando duas opções ao usuário: cadastrar ou listar usuários cadastrados -->
+        <section class="landingSection" id="landingSection">
+            <h1 class="header">Selecione uma ação</h1>
+            <!-- ao clicar nesse botão, a seção vira "display: none" (some) e a seção "createSection" aparece (display: flex) -->
+            <button type="button" class="btn create" id="createBtn" onclick="toCreateSection()">Cadastrar usuários</button>
+            <!-- ao clicar nesse botão aparecerá a lista de usuários cadastrados e seus email (class="list") -->
+            <button type="button" class="btn read" id="listBtn" onclick="toListSection()">Listar usuários</button>
+            <!-- ao clicar nesse botão aparecerá a section class="delete" -->
+            <button type="button" class="btn delete" id="deleteBtn" onclick="toDeleteSection()">Deletar usuários</button>
+        </section>
+
+        <!-- seção inicialmente com display: none receberá display: flex caso o botão "create" seja pressionado -->
+        <section class="createSection" id="createSection">
+            <h2 class="header">Digite os dados do usuário</h2>
+            <h4>Nome:</h4>
+            <input type="text" name="userName" id="userName">
+            <h4 class="header">Email:</h4>
+            <input type="email" name="uderEmail" id="uderEmail">
+            <div id="buttons">
+                <button onclick="returnLandingPage()" id="returnBtnFromCreate">Voltar</button>
+                <button type="submit" onclick="createUser()">Enviar</button>
+            </div>
+        </section>
+
+        <!-- seção inicialmente com display: none receberá display: flex caso o botão "read" seja pressionado -->
+        <section class="listSection" id="ListSection">
+            <h4 class="header">Usuários cadastrados</h4>
+            <!-- serão adicionados <li> (via javascript) contendo o nome do usuário e seu email -->
+            <button id="returnBtnFromList" onclick="returnLandingPage()">Voltar</button>
+        </section>
+
+         <!-- seção inicialmente com display: none receberá display: flex caso o botão "delete" seja pressionado -->
+        <section class="deleteSection" id="deleteSection">
+            <h4 class="header">Digite o usuário para deletar</h4>
+            <input type="text" name="" id="deleteUser">
+            <div id="buttons">
+                <button onclick="returnLandingPage()" id="returnBtnFromDelete">Voltar</button>
+                <button onclick="deleteUser()" id="delete">Deletar</button>
+            </div>
+        </section>
+
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
