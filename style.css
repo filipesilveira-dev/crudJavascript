@@ -59,7 +59,7 @@ main{
     border-radius: 1rem;  
 }
 
-#buttons{
+#buttons-delete, #buttons-create{
     display: flex;
     gap: 2rem;
 }
