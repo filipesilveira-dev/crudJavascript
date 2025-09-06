@@ -25,17 +25,20 @@
             <h4>Nome:</h4>
             <input type="text" name="userName" id="userName">
             <h4 class="header">Email:</h4>
-            <input type="email" name="uderEmail" id="uderEmail">
+            <input type="email" name="userEmail" id="userEmail">
             <div id="buttons-create">
                 <button onclick="returnLandingPage()" id="returnBtnFromCreate">Voltar</button>
-                <button type="submit" onclick="createUser()">Enviar</button>
+                <button type="submit" id="addUser" onclick="createUser()">Enviar</button>
             </div>
         </section>
 
         <!-- seção inicialmente com display: none receberá display: flex caso o botão "read" seja pressionado -->
         <section class="listSection" id="ListSection">
             <h4 class="header">Usuários cadastrados</h4>
-            <!-- serão adicionados <li> (via javascript) contendo o nome do usuário e seu email -->
+            <ul id="userList">
+                <!-- serão adicionados <li> (via javascript) contendo o nome do usuário e seu email -->
+            </ul>
+            
             <button id="returnBtnFromList" onclick="returnLandingPage()">Voltar</button>
         </section>
 

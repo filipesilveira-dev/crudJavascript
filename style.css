@@ -36,6 +36,7 @@ main{
     flex-direction: column;
     height: 33%;
     width: 60%;
+    max-width: 400px;
     justify-content: center;
     align-items: center;
     gap: 1rem;  
@@ -50,8 +51,9 @@ main{
 .createSection {
     
     flex-direction: column;
-    height: 33%;
+    height: 50%;
     width: 60%;
+    max-width: 400px;
     justify-content: center;
     align-items: center;
     gap: 1rem;  
@@ -67,8 +69,9 @@ main{
 .deleteSection {
     
     flex-direction: column;
-    height: 33%;
+    height: 50%;
     width: 60%;
+    max-width: 400px;
     justify-content: center;
     align-items: center;
     gap: 1rem;  
@@ -80,7 +83,7 @@ main{
 .listSection {
     
     flex-direction: column;
-    height: 33%;
+    height: 50%;
     width: 60%;
     justify-content: center;
     align-items: center;
