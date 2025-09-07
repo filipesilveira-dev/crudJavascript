@@ -1,5 +1,6 @@
 
 const userInfo = document.getElementById("userList");
+const userInfoToDelete = document.getElementById("userListToDelete");
 
 //função criada para esconder a landing page e "ir" para a seção de cadastro
 function toCreateSection(){
@@ -66,8 +67,8 @@ function returnLandingPage(){
     
 }
 
-//fetch para pegar as informações salvas na api do crudcrud
-fetch("https://crudcrud.com/api/73991727b2064ad6bc9fa61cbc621fcf/user")
+    //fetch para pegar (GET) as informações salvas na api do crudcrud
+fetch("https://crudcrud.com/api/1bbc4aa9ae214d6d93d28c925d1db7a9/user")
     //caso a requisição dê certo, ou seja, a resposta venha, visa-se buscar o json dela
     .then((response) => response.json())
     //se der certo pegar o json da resposta, será retornada uma array com vários usuários e seus emails
@@ -96,7 +97,7 @@ fetch("https://crudcrud.com/api/73991727b2064ad6bc9fa61cbc621fcf/user")
 
     
     //a URL será a mesma utilizada anteriormente no método GET, porém ao final será acrecentado um objeto e suas informações que serão acrescidas
-    fetch("https://crudcrud.com/api/73991727b2064ad6bc9fa61cbc621fcf/user", {
+    fetch("https://crudcrud.com/api/1bbc4aa9ae214d6d93d28c925d1db7a9/user", {
 
         method: "POST", //método de acrescentar
         headers: {
@@ -112,10 +113,15 @@ fetch("https://crudcrud.com/api/73991727b2064ad6bc9fa61cbc621fcf/user")
 
             //cria um novo elemento de lista (<li>) para cada tarefa
             const userNameEmail = document.createElement("li");
+            const userNameEmailToDelete = document.createElement("li");
+
             //define o conteúdo HTML do userInfo, nome e email
             userNameEmail.innerHTML = `Nome: ${user.Nome} || Email: ${user.Email}`;
+            userNameEmail.setAttribute("id", "nameEmail");
+            userNameEmailToDelete.innerHTML = `${user.Nome} || Email: ${user.Email} <button data-id="${user._id}" onclick="remove('${user._id}')">X</button>`;
             //adiciona o novo userInfo à lista de tarefas no HTML
             userInfo.appendChild(userNameEmail);
+            userInfoToDelete.appendChild(userNameEmailToDelete);
 
             limparCampo()
         })
@@ -123,10 +129,9 @@ fetch("https://crudcrud.com/api/73991727b2064ad6bc9fa61cbc621fcf/user")
         .catch(error => console.error("Erro ao adicionar usuário: ", error));
     })
 
-    //eu posso criar essa função na qual o usuário pode colocar o nome que deseja apagar ou posso criar os usuários já com botão de deletar: o usuário clicaria em "deletar usuários" e, ao invés dele digitar, aparece a lista de todos os cadastrados pra ele pode escolher qual quer deletar e clicar em um "x" ou algo assim
-    function deleteUser() {
-        const nome = document.getElementById("deleteUser")
-    fetch(`https://crudcrud.com/api/73991727b2064ad6bc9fa61cbc621fcf/user/${user._id}`, {
+//deletar da api ok (falta remover item da lista)
+function remove(userId) {
+    fetch(`https://crudcrud.com/api/1bbc4aa9ae214d6d93d28c925d1db7a9/user/${userId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -137,10 +142,10 @@ fetch("https://crudcrud.com/api/73991727b2064ad6bc9fa61cbc621fcf/user")
             // Verifica se deu certo para depois chamar a função para remover da tela
             if (response.ok) {
                 console.log(`Item com ID ${userId} foi deletado com sucesso!`);
-                //removerItemDaTela(userId);
+                removerUsuarioDaTela(userId);
             } else {
                 console.log('Erro ao deletar item:', response.status);
-                alert('Erro ao deletar tarefa');
+                alert('Erro ao deletar usuário');
             }
         })
         .catch(error => {
@@ -149,6 +154,20 @@ fetch("https://crudcrud.com/api/73991727b2064ad6bc9fa61cbc621fcf/user")
         });
 }
 
+function removerUsuarioDaTela(userId) {
+    const button = document.querySelector(`button[data-id="${userId}"]`);
+    const nameEmailId = document.getElementById("nameEmail");
+    // se tiver um elemento com id='button'
+    if (button || nameEmailId) {
+        // Remove o elemento pai (li) do botão encontrado
+        button.parentElement.remove();
+        nameEmailId.parentElement.remove();
+        console.log(`Item com ID ${userId} removido da tela`);
+        alert('Usuário deletado com sucesso!');
+    } else {
+        console.error(`Botão com ID ${userId} não encontrado na tela`);
+    }
+}
 
 function limparCampo() {
     const userName = document.getElementById("userName");

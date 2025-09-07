@@ -43,9 +43,13 @@
         </section>
 
          <!-- seção inicialmente com display: none receberá display: flex caso o botão "delete" seja pressionado -->
-        <section class="deleteSection" id="deleteSection">
-            <h4 class="header">Digite o usuário para deletar</h4>
-            <input type="text" name="" id="deleteUser">
+
+         <section class="deleteSection" id="deleteSection">
+            <h4 class="header">Usuários cadastrados</h4>
+            <ul id="userListToDelete">
+                <!-- serão adicionados <li> (via javascript) contendo o nome do usuário e seu email a serem deletados -->
+            </ul>
+            
             <div id="buttons-delete">
                 <button onclick="returnLandingPage()" id="returnBtnFromDelete">Voltar</button>
                 <button onclick="deleteUser()" id="delete">Deletar</button>
