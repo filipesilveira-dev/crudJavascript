@@ -20,17 +20,17 @@
         </section>
 
         <!-- seção inicialmente com display: none receberá display: flex caso o botão "create" seja pressionado -->
-        <section class="createSection" id="createSection">
+        <form class="createSection" id="createSection">
             <h2 class="header">Digite os dados do usuário</h2>
             <h4>Nome:</h4>
             <input type="text" name="userName" id="userName">
             <h4 class="header">Email:</h4>
-            <input type="email" name="userEmail" id="userEmail">
+            <input type="email" name="userEmail" id="userEmail" required placeholder="Digite seu email">
             <div id="buttons-create">
                 <button onclick="returnLandingPage()" id="returnBtnFromCreate">Voltar</button>
-                <button type="submit" id="addUser" onclick="createUser()">Enviar</button>
+                <button type="submit" id="addUser">Enviar</button>
             </div>
-        </section>
+        </form>
 
         <!-- seção inicialmente com display: none receberá display: flex caso o botão "read" seja pressionado -->
         <section class="listSection" id="ListSection">
