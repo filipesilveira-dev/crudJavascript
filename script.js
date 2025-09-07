@@ -68,7 +68,7 @@ function returnLandingPage(){
 }
 
     //fetch para pegar (GET) as informações salvas na api do crudcrud
-fetch("https://crudcrud.com/api/1bbc4aa9ae214d6d93d28c925d1db7a9/user")
+fetch("https://crudcrud.com/api/07feaa325c3d42349fb3051dfc2fdbf9/user")
     //caso a requisição dê certo, ou seja, a resposta venha, visa-se buscar o json dela
     .then((response) => response.json())
     //se der certo pegar o json da resposta, será retornada uma array com vários usuários e seus emails
@@ -97,7 +97,7 @@ fetch("https://crudcrud.com/api/1bbc4aa9ae214d6d93d28c925d1db7a9/user")
 
     
     //a URL será a mesma utilizada anteriormente no método GET, porém ao final será acrecentado um objeto e suas informações que serão acrescidas
-    fetch("https://crudcrud.com/api/1bbc4aa9ae214d6d93d28c925d1db7a9/user", {
+    fetch("https://crudcrud.com/api/07feaa325c3d42349fb3051dfc2fdbf9/user", {
 
         method: "POST", //método de acrescentar
         headers: {
@@ -131,7 +131,7 @@ fetch("https://crudcrud.com/api/1bbc4aa9ae214d6d93d28c925d1db7a9/user")
 
 //deletar da api ok (falta remover item da lista)
 function remove(userId) {
-    fetch(`https://crudcrud.com/api/1bbc4aa9ae214d6d93d28c925d1db7a9/user/${userId}`, {
+    fetch(`https://crudcrud.com/api/07feaa325c3d42349fb3051dfc2fdbf9/user/${userId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
