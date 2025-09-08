@@ -4,41 +4,32 @@ const userInfoToDelete = document.getElementById("userListToDelete");
 
 //função criada para esconder a landing page e "ir" para a seção de cadastro
 function toCreateSection(){
-    
     const showCreateSection = document.getElementById("createSection");
-    
-
-        const hideLandingSection = document.getElementById("landingSection");
-        hideLandingSection.style.display = "none";
-        showCreateSection.style.display = "flex";
+    const hideLandingSection = document.getElementById("landingSection");
+    hideLandingSection.style.display = "none";
+    showCreateSection.style.display = "flex";
     
 }
 
 //função criada para esconder a landing page e "ir" para a seção de lista
 function toListSection(){
-    
     const showListSection = document.getElementById("ListSection");
-    
-        
-        const hideLandingSection = document.getElementById("landingSection");
-        hideLandingSection.style.display = "none";
-        showListSection.style.display = "flex";
+    const hideLandingSection = document.getElementById("landingSection");
+    hideLandingSection.style.display = "none";
+    showListSection.style.display = "flex";
    
 }
 
 //função criada para esconder a landing page e "ir" para a seção de deletar
 function toDeleteSection(){
-    
     const showDeleteSection = document.getElementById("deleteSection");
-    
-        
-        const hideLandingSection = document.getElementById("landingSection");
-        hideLandingSection.style.display = "none";
-        showDeleteSection.style.display = "flex";
+    const hideLandingSection = document.getElementById("landingSection");
+    hideLandingSection.style.display = "none";
+    showDeleteSection.style.display = "flex";
     
 }
 
-// função criada para retornar à landing page. Feitar para servir nas três ou mais possibilidades de aparição
+// função criada para retornar à landing page
 function returnLandingPage(){
     const showLandingPage = document.getElementById("landingSection");
     const hideCreateSection = document.getElementById("createSection");
@@ -74,7 +65,7 @@ fetch("https://crudcrud.com/api/07feaa325c3d42349fb3051dfc2fdbf9/user")
     //se der certo pegar o json da resposta, será retornada uma array com vários usuários e seus emails
     .then((user) => {
 
-        //itera sobre cada usuário do array. Para cada elemento (usuário) de listaDeTarefas será executada o que está na arrow function
+        //itera sobre cada usuário do array. Para cada elemento (usuário) de user será executada o que está na arrow function
         user.forEach(user => {
 
              //cria um novo elemento de lista (<li>) para cada usuário, com seu nome e seu email
@@ -88,7 +79,7 @@ fetch("https://crudcrud.com/api/07feaa325c3d42349fb3051dfc2fdbf9/user")
     .catch(error => console.error("Erro ao adicionar tarefa: ", error));
 
 
-
+    // evento para criar usuário
     document.getElementById("addUser").addEventListener("click", ()=>{
 
     //seleciona o elemento HTML (id="userName" e "userEmail") de onde será recebido o valor ou informação que será acrescentada na lista de tarefas 
@@ -104,22 +95,22 @@ fetch("https://crudcrud.com/api/07feaa325c3d42349fb3051dfc2fdbf9/user")
             //objeto informa que o tipo de conteúdo que será passado é do tipo JSON
             "Content-Type": "application/json"
         },
-        //no body é o que será enviado, no caso um arquivo JSON. Dessa forma é utilizado o parâmetro estabelecido no postman (descricao) que fica na primeira posição dos parâmetros passados e, no segundo parâmetro, será passada a variável "description" criada para receber o valor do que há no elemento HTML com id="tarefa". Como se trata de um objeto em javascript, é necessário transformá-lo em JSON por meio do JSON.stringify().
+        //no body é o que será enviado, no caso um arquivo JSON. Dessa forma é utilizado o parâmetro estabelecido no postman (nome e email) que fica na primeira posição dos parâmetros passados e, no segundo parâmetro, será passada a variável "name" e "email" criada para receber o valor do que há no elemento HTML com id="userList" e id="userListToDelete". Como se trata de um objeto em javascript, é necessário transformá-lo em JSON por meio do JSON.stringify().
         body: JSON.stringify({ Nome: userName, Email: userEmail })
 
     })
         .then(response => response.json())
         .then((user) => {
 
-            //cria um novo elemento de lista (<li>) para cada tarefa
+            //cria dois novos elementos de lista (<li>) para cada sessão
             const userNameEmail = document.createElement("li");
             const userNameEmailToDelete = document.createElement("li");
 
-            //define o conteúdo HTML do userInfo, nome e email
+            //define o conteúdo HTML do userEmail e userEmailToDelete, nome e email
             userNameEmail.innerHTML = `Nome: ${user.Nome} || Email: ${user.Email}`;
             userNameEmail.setAttribute("id", "nameEmail");
             userNameEmailToDelete.innerHTML = `${user.Nome} || Email: ${user.Email} <button data-id="${user._id}" onclick="remove('${user._id}')">X</button>`;
-            //adiciona o novo userInfo à lista de tarefas no HTML
+            //adiciona os novos userInfo à lista de usuários e usuários para deletar no HTML
             userInfo.appendChild(userNameEmail);
             userInfoToDelete.appendChild(userNameEmailToDelete);
 
@@ -129,7 +120,7 @@ fetch("https://crudcrud.com/api/07feaa325c3d42349fb3051dfc2fdbf9/user")
         .catch(error => console.error("Erro ao adicionar usuário: ", error));
     })
 
-//deletar da api ok (falta remover item da lista)
+// função criada para deletar um usuário da API
 function remove(userId) {
     fetch(`https://crudcrud.com/api/07feaa325c3d42349fb3051dfc2fdbf9/user/${userId}`, {
         method: "DELETE",
@@ -154,10 +145,11 @@ function remove(userId) {
         });
 }
 
+// função criada para remover o elemento HTML adicionado via javascript
 function removerUsuarioDaTela(userId) {
     const button = document.querySelector(`button[data-id="${userId}"]`);
     const nameEmailId = document.getElementById("nameEmail");
-    // se tiver um elemento com id='button'
+    // se tiver um elemento com id='button' ou id='nameEmailId'
     if (button || nameEmailId) {
         // Remove o elemento pai (li) do botão encontrado
         button.parentElement.remove();
@@ -169,6 +161,7 @@ function removerUsuarioDaTela(userId) {
     }
 }
 
+//função criada para limpar o campo de input do formulário
 function limparCampo() {
     const userName = document.getElementById("userName");
     const userEmail = document.getElementById("userEmail");
